@@ -1,2 +1,2 @@
 # Aerial-Ground Point Cloud Place Recognition 
-Our code is coming soon.
+Our code will be released after the paper is accepted.

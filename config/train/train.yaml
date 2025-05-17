@@ -1,0 +1,55 @@
+dataloaders: 
+  train:
+    dataset:
+      root_path: file/path
+    collate:
+      name: MetricCollate
+    sampler:
+      batch_size: 24
+      batch_size_limit: 24
+      batch_expansion_rate: 1.4
+      max_batches: null
+    num_workers: 0
+
+method:
+  model: 
+    name: HBFusion
+    debug: no
+    meangem:
+      p: 3.0 
+      eps: 0.000001
+  loss: 
+    name: HBFusionLoss 
+    batch_loss:
+      margin: 1.0
+      style: hard
+    point_loss:
+      margin: 2.0
+      style: soft
+      corr_dist: 2.0
+      sample_num: 256
+      pos_dist: 2.0
+      neg_dist: 20.0
+    overlap_loss:
+      corr_dist: 2.0
+    bev_loss:
+      margin: 0.0
+      style: hard
+    point_loss_scale: 0.5
+    overlap_loss_scale: 1.0
+    bev_loss_scale: 1.0
+
+train:
+  lr: 0.001
+  epochs: 80
+  weight_decay: 0.001
+  batch_expansion_th: 0.7 
+  scheduler_milestones: [15, 30] 
+
+dist:
+  backend: nccl
+  find_unused_parameters: no
+
+results:
+  weights: results/weights
+  logs:    tensorboard

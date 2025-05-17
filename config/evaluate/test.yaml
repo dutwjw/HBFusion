@@ -1,0 +1,17 @@
+dataloaders: 
+  evaluate:
+    dataset:
+      root_path: file/path
+      sample_proportion: 1.0
+    collate:
+      name: MetricCollate
+    sampler:
+      name: BatchSample
+      batch_size: 1
+      batch_size_limit: null
+      batch_expansion_rate: null
+      shuffle: false
+      max_batches: null
+    num_workers: 0
+
+weights: /pretrain/TIME/Min_Loss.pth
